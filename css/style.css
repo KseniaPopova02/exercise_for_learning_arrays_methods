@@ -10769,9 +10769,9 @@ body {
 }
 
 @media (max-width: 450px) {
-  .timer,
-.count {
-    font-size: 15px;
+  .header__wrapper .timer,
+.header__wrapper .count {
+    font-size: 17px;
   }
   h1, .h1 {
     font-size: 20px;
@@ -10785,5 +10785,12 @@ body {
 @media (max-width: 300px) {
   .results {
     grid-template-columns: repeat(2, 1fr);
+  }
+  h1, .h1 {
+    font-size: 17px;
+  }
+  .header__wrapper .timer,
+.header__wrapper .count {
+    font-size: 13px;
   }
 }
