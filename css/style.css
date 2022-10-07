@@ -10721,6 +10721,7 @@ body {
   border-radius: 10px;
   justify-content: space-between;
   align-items: center;
+  align-items: center;
 }
 .header__wrapper h1, .header__wrapper .h1 {
   color: #fff;
