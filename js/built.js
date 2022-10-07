@@ -8,16 +8,44 @@
 /***/ (() => {
 
 // Variables
-var input, form, list; //create an array
+var input, form, list, btnAdd; //create an array
 
-var items = []; //create function
+var items = [];
+var startTime, timerInterval;
+var total; //create function
 
 var createItem = function createItem(text) {
+  if (!startTime) {
+    startTime = Date.now();
+    timerInterval = setInterval(function () {
+      var timerShow = document.querySelector(".timer");
+      var currentTime = Date.now();
+      var elapsedMilliseconds = (currentTime - startTime) / 1000;
+      var seconds = Math.floor(elapsedMilliseconds) % 60; // Getting seconds
+
+      var minutes = Math.floor(elapsedMilliseconds / 60) % 60; // Getting minutes
+
+      var hour = Math.floor(elapsedMilliseconds / 60 / 60) % 60; // Getting hours
+
+      var strTimer = "".concat((hour < 10 ? "0" : "") + hour, ":").concat((minutes < 10 ? "0" : "") + minutes, ":").concat((seconds < 10 ? "0" : "") + seconds);
+      timerShow.innerHTML = strTimer;
+    }, 500);
+  }
+
   if (typeof [][text] === "function") {
     items.push({
       text: text
     });
     renderList();
+  } else {
+    input.classList.add("error");
+    setTimeout(function () {
+      input.classList.remove("error");
+    }, 750);
+  }
+
+  if (items.length === total) {
+    clearInterval(timerInterval);
   }
 }; // Render List function
 
@@ -46,10 +74,11 @@ window.addEventListener("DOMContentLoaded", function () {
   input = document.querySelector(".form-control");
   form = document.querySelector(".form__wrapper");
   list = document.querySelector(".results");
+  btnAdd = document.querySelector(".btn btn-outline-secondary");
   headerWrapper = document.querySelector(".header__wrapper");
   console.log(list); //Adding a count
 
-  var total = Object.getOwnPropertyNames(Array.prototype).filter(function (item) {
+  total = Object.getOwnPropertyNames(Array.prototype).filter(function (item) {
     return typeof [][item] === "function";
   }).length;
   document.querySelector(".count .total").textContent = total;

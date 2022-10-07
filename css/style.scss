@@ -115,6 +115,12 @@ body {
   grid-template-columns: repeat(5, 1fr);
 }
 
+.form-control {
+  &.error {
+    animation: tilt-shaking 0.5s forwards;
+  }
+}
+
 @media (max-width: 450px) {
   .header__wrapper {
     .timer,
@@ -148,5 +154,23 @@ body {
     .count {
       font-size: 13px;
     }
+  }
+}
+
+@keyframes tilt-shaking {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(5deg);
+  }
+  50% {
+    transform: rotate(0eg);
+  }
+  75% {
+    transform: rotate(-5deg);
+  }
+  100% {
+    transform: rotate(0deg);
   }
 }
